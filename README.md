@@ -68,3 +68,8 @@ Above is the happy path. The production checklist: The details below apply to Pr
 **Privacy First Order Fanout: Scheduled / background work**
 - **Privacy First Order Fanout:** Server-side jobs keep running and **consuming credit** — monitor `GET /v1/account/usage` and set an auto-recharge threshold.
 - **Privacy First Order Fanout:** Make handlers idempotent and use the queue's ack/retry so a redelivery doesn't double-process.
+
+## FAQ
+
+**Do I need anything besides `INFRAI_API_KEY`?**  
+No — `npx tsx` and the key. `src/infrai_queue.ts` wraps `queue.publish` in an ordinary HTTPS request, so there is no SDK to install or keep in sync. For a ecommerce notification fanout example that is the entire dependency story.
